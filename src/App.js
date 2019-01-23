@@ -50,17 +50,20 @@ class App extends Component {
       cursor:'pointer'
     }
    
-    let persons = null;
+    let person = null;
     if(this.state.showPerson){
-      persons = (
+     person = (
           <div>
-           <Person name={this.state.person[0].name} age={this.state.person[0].age} />
-           <Person name={this.state.person[1].name} age={this.state.person[1].age} click={this.switchNameHandler.bind(this,"Star Lord")}>I study at ignou</Person>
-           <Person name={this.state.person[2].name} age={this.state.person[2].age} change={this.nameChangeHandler}/>
+          {
+            this.state.person.map(hello => {
+              return <Person name={hello.name} age={hello.age} />
+            })
+          }
           </div>
         )
     }
 
+  
 
     return (
       <div className="App">
@@ -68,7 +71,7 @@ class App extends Component {
         <p>I learn ReactJS</p>
         <p>Vimal Pillai</p>
         <button style={style} onClick={this.showPersonHandler}>Switch Name</button>
-        {persons}      
+        {person}      
       </div>
     );
   }
